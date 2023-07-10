@@ -1,7 +1,8 @@
 package com.dynamo.demobazel;
 
 public class DemoMain {
+
     public static void main(String args[]) {
-        System.out.println("Greetings");
+        Greetings.greet();
     }
 }
