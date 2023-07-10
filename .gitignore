@@ -1,0 +1,32 @@
+# use glob syntax.
+syntax: glob
+
+/**/*.jar
+/**/bazel-*
+
+*.backup
+*.bak
+*.class
+*.db
+*.log
+*.old
+*.swp
+*.tfstate
+*.out
+
+# idea
+.idea
+*.iml
+.project
+.settings/
+.classpath
+
+# building
+target
+dist
+test-output
+build.log
+metastore_db/**
+
+# bazel
+.ijwb
