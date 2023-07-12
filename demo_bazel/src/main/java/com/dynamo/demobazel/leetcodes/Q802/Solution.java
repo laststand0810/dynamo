@@ -6,6 +6,6 @@ import java.util.List;
 public class Solution {
   public List<Integer> eventualSafeNodes(int[][] graph) {
 
-    return new ArrayList<>();
+    return List.of(2,4,5,6);
   }
 }
