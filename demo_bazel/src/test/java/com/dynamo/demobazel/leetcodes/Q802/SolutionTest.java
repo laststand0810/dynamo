@@ -23,6 +23,7 @@ public class SolutionTest {
 
   @Test
   public void testThrowError(){
+    return;
   }
 
 }
