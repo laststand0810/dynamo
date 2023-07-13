@@ -21,4 +21,8 @@ public class SolutionTest {
     Assert.assertArrayEquals(solution.eventualSafeNodes(input).toArray(), List.of(2,4,5,6).toArray());
   }
 
+  @Test
+  public void testThrowError(){
+  }
+
 }
