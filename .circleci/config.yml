@@ -1,0 +1,54 @@
+version: 2.1
+
+commands:
+  setup-bazel:
+    description:
+      Set up Bazel build system
+    steps:
+      - run:
+          name: Add Bazel Apt repository
+          command: |
+            sudo apt install curl gnupg
+            curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
+            sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
+            echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+      - run:
+          name: Install Bazel from Apt
+          command: sudo apt update && sudo apt install bazel-5.2.0 && sudo ln -s /usr/bin/bazel-5.2.0 /usr/bin/bazel
+  collect-test-xml:
+    description:
+      Collect all test.xml after running test all for documentation
+    steps:
+      - run:
+          name: Collect test log
+          command: |
+            chmod +x $HOME/project/scripts/prepare_test_log.sh
+            mkdir $HOME/tests
+            sh -c $HOME/project/scripts/prepare_test_log.sh
+            
+
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/openjdk:11.0.19
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0.19
+    parallelism: 4
+    steps:
+      - checkout
+      - setup-bazel
+      - run:
+          name: Run tests
+          command: bazel test --strategy=KotlinCompile=worker --test_output=errors //... # Depending on your Bazel package and target
+      - collect-test-xml
+      - run:
+          name: Run build
+          command: bazel build //... # Depending on your Bazel package and target
+      - store_test_results:
+          path: ~/tests/
+      - store_artifacts:
+          path: ~/tests/
+workflows:
