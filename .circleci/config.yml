@@ -33,22 +33,35 @@ executors:
       - image: cimg/openjdk:11.0.19
 
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/openjdk:11.0.19
-    parallelism: 4
+    resource_class: small
+    parallelism: 2
     steps:
       - checkout
       - setup-bazel
       - run:
           name: Run tests
           command: bazel test --strategy=KotlinCompile=worker --test_output=errors //... # Depending on your Bazel package and target
-      - collect-test-xml
+# TODO: temporarily removing log until finding out how to parallel test with Bazel
+#      - collect-test-xml
+#      - store_test_results:
+#          path: ~/tests/
+  build:
+    docker:
+      - image: cimg/openjdk:11.0.19
+    resource_class: small
+    parallelism: 2
+    steps:
+      - checkout
+      - setup-bazel
       - run:
           name: Run build
           command: bazel build //... # Depending on your Bazel package and target
-      - store_test_results:
-          path: ~/tests/
-      - store_artifacts:
-          path: ~/tests/
+
 workflows:
+  build-and-test:
+    jobs:
+      - test
+      - build
