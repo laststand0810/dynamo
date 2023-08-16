@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name='com.dynamo.demobazel.leetcodes.Q802.DemoTest' file='demo_bazel/src/test/java/com/dynamo/demobazel/leetcodes/Q802/DemoTest.java' timestamp='2023-07-20T13:58:57.250Z' hostname='localhost' tests='1' failures='0' errors='0' time='0.005' package='' id='0'>
+    <properties />
+    <testcase name='testOutputStream' classname='com.dynamo.demobazel.leetcodes.Q802.DemoTest' time='0.005' />
+    <system-out />
+    <system-err /></testsuite></testsuites>

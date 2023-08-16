@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name='com.dynamo.demobazel.algo.sorts.SortTest' file='demo_bazel/src/test/java/com/dynamo/demobazel/algo/sorts/SortTest.java' timestamp='2023-08-03T05:43:30.142Z' hostname='localhost' tests='3' failures='0' errors='0' time='0.031' package='' id='0'>
+    <properties />
+    <testcase name='testShellSort' classname='com.dynamo.demobazel.algo.sorts.SortTest' time='0.021' />
+    <testcase name='testBubbleSort' classname='com.dynamo.demobazel.algo.sorts.SortTest' time='0.003' />
+    <testcase name='testInsertionSort' classname='com.dynamo.demobazel.algo.sorts.SortTest' time='0.006' />
+    <system-out />
+    <system-err /></testsuite></testsuites>

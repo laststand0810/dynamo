@@ -1,4 +1,6 @@
-package com.dynamo.demobazel.algo;
+package com.dynamo.demobazel.algo.sorts;
+
+import com.dynamo.demobazel.algo.utils.PrintArrUtil;
 
 public class BubbleSort {
 
@@ -21,6 +23,10 @@ public class BubbleSort {
     int temp = a[pos1];
     a[pos1] = a[pos2];
     a[pos2] = temp;
+  }
+
+  synchronized static void create() {
+
   }
 
 }

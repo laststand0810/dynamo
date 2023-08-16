@@ -3,6 +3,6 @@ java_test(
     size = "small",
     srcs = ["SortTest.java"],
     deps = [
-        "//demo_bazel/src/main/java/com/dynamo/demobazel/algo:Sorts",
+        "//demo_bazel/src/main/java/com/dynamo/demobazel/algo/sorts:Sorts",
     ],
 )

@@ -1,4 +1,6 @@
-package com.dynamo.demobazel.algo;
+package com.dynamo.demobazel.algo.sorts;
+
+import com.dynamo.demobazel.algo.utils.PrintArrUtil;
 
 public class InsertionSort {
 

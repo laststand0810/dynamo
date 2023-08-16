@@ -15,6 +15,15 @@ commands:
       - run:
           name: Install Bazel from Apt
           command: sudo apt update && sudo apt install bazel-5.2.0 && sudo ln -s /usr/bin/bazel-5.2.0 /usr/bin/bazel
+  circleci-glob:
+    description:
+      Define test suite
+    steps:
+      - run:
+          name: Define Test Suite
+          command: |
+            echo $(circleci tests split --split-by=timings)
+            echo $(circleci tests glob "$HOME/project/**/test/**/*.java" | cut -d "project/" -f2 | circleci tests split --split-by=timings)
   collect-test-xml:
     description:
       Collect all test.xml after running test all for documentation
@@ -25,7 +34,6 @@ commands:
             chmod +x $HOME/project/scripts/prepare_test_log.sh
             mkdir $HOME/tests
             sh -c $HOME/project/scripts/prepare_test_log.sh
-            
 
 executors:
   docker-executor:
@@ -41,13 +49,16 @@ jobs:
     steps:
       - checkout
       - setup-bazel
+      - circleci-glob
       - run:
           name: Run tests
-          command: bazel test --strategy=KotlinCompile=worker --test_output=errors //... # Depending on your Bazel package and target
+          command: |
+            export XML_OUTPUT_FILE=$HOME/tests
+            bazel test --strategy=KotlinCompile=worker --test_output=errors //... # Depending on your Bazel package and target
 # TODO: temporarily removing log until finding out how to parallel test with Bazel
-#      - collect-test-xml
-#      - store_test_results:
-#          path: ~/tests/
+      - collect-test-xml
+      - store_test_results:
+          path: ~/tests/
   build:
     docker:
       - image: cimg/openjdk:11.0.19

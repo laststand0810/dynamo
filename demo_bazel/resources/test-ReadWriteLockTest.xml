@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name='com.dynamo.demobazel.concurrency.ReadWriteLockTest' file='demo_bazel/src/test/java/com/dynamo/demobazel/concurrency/ReadWriteLockTest.java' timestamp='2023-07-24T03:01:06.958Z' hostname='localhost' tests='1' failures='0' errors='0' time='6.169' package='' id='0'>
+    <properties />
+    <testcase name='testWriteLockingWhenReadLocked' classname='com.dynamo.demobazel.concurrency.ReadWriteLockTest' time='6.169' />
+    <system-out />
+    <system-err /></testsuite></testsuites>

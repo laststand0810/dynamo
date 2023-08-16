@@ -1,6 +1,5 @@
-package com.dynamo.demobazel.algo;
+package com.dynamo.demobazel.algo.sorts;
 
-import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
